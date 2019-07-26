@@ -112,21 +112,6 @@ head(sardines)
 #  p2
 #  
 
-## ----plot_sardines, echo = FALSE, out.width = '.49\\linewidth', fig.width = 3, fig.height = 4, message = FALSE, warning = FALSE----
-p1 <- add_tabledap(
-  plotdap(crs = "+proj=robin",  mapTitle = "subsample count"), 
-  sardines, 
-  ~subsample_count
-)
-p2 <- add_tabledap(
-  plotdap(crs = "+proj=robin", mapTitle = "Log subsample count"), 
-  sardines, 
-  ~log2(subsample_count)
-) 
-
-p1
-p2
-
 ## ---- echo = TRUE, eval = FALSE------------------------------------------
 #  p1 <- add_tabledap(
 #    plotdap(crs = "+proj=robin", mapTitle = "Sardines - change color"),
@@ -143,24 +128,6 @@ p2
 #  )
 #  p1
 #  p2
-
-## ----plot_sardines2, echo = FALSE, fig.hold = TRUE, out.width = '.49\\linewidth', fig.width = 3, fig.height = 4, message = FALSE, warning = FALSE----
-p1 <- add_tabledap(
-  plotdap(crs = "+proj=robin", mapTitle = "Sardines - change color"), 
-  sardines, 
-  ~subsample_count, 
-  color = "density", 
-)
-p2  <- add_tabledap(
-  plotdap(crs = "+proj=robin", mapTitle = "Sardines - change shape and size"), 
-  sardines, 
-  ~subsample_count, 
-  shape = 4,
-  size = 1.
-  
-)
-p1
-p2
 
 ## ----get_mur-------------------------------------------------------------
 murSST_west <- griddap(
