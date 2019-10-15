@@ -32,7 +32,7 @@ try_require <- function(package, fun) {
 
 try_gganimate <- function() {
   if (system.file(package = "gganimate") != "") {
-    if (utils::packageVersion("gganimate") > "0.1") {
+    if (utils::packageVersion("gganimate") > "1.0.0") {
       return(TRUE)
     }
   }
@@ -87,6 +87,10 @@ format_table <- function(table, .info) {
   table
 }
 
+# sf is not properly importing rgeos.
+# I need to import it, but causes note if not
+# referenced. Here is a dummy function.
+dummy <- function() rgeos::getScale()
 
 # This is likely WRONG, SAD!
 # rescale_lims <- function(x, .info = info(attr(x, "datasetid"))) {
