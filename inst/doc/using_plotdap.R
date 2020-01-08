@@ -1,28 +1,28 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 ### needed libraries
 library(mapdata)
 library(plotdap)
 library(rerddap)
 
 
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE------------------------------------------------------------
 #  install.packages("plotdap")
 
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE------------------------------------------------------------
 #  devtools::install_github('ropensci/plotdap')
 
-## ----world, fig.align = 'center', fig.height = 4, fig.width = 5----------
+## ----world, fig.align = 'center', fig.height = 4, fig.width = 5---------------
 library(plotdap)
 plotdap()
 plotdap("base")
 
-## ----southPole, fig.align = 'center', fig.height = 4, fig.width = 5------
+## ----southPole, fig.align = 'center', fig.height = 4, fig.width = 5-----------
 plotdap("base",
   mapTitle = "MODIS South Pole Stereographic", 
   mapFill = "transparent", 
@@ -30,21 +30,21 @@ plotdap("base",
   crs = "+proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=-63 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
 )
 
-## ----alaska, fig.align = 'center', fig.height = 4, fig.width = 5---------
+## ----alaska, fig.align = 'center', fig.height = 4, fig.width = 5--------------
 alaska <- "+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 plotdap("base", crs = alaska)
 
-## ---- echo = FALSE-------------------------------------------------------
+## ---- echo = FALSE------------------------------------------------------------
 alaska <- "+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 
-## ----usmap, fig.align = 'center', fig.height = 4, fig.width = 5----------
+## ----usmap, fig.align = 'center', fig.height = 4, fig.width = 5---------------
 library(sf)
 library(mapdata)
 w <- st_as_sf(maps::map("world", plot = FALSE, fill = TRUE))
 us <- st_transform(subset(w, ID == "USA"), alaska)
 plotdap(mapData = us)
 
-## ----get_viirsSST--------------------------------------------------------
+## ----get_viirsSST-------------------------------------------------------------
 sstInfo <- rerddap::info('erdVHsstaWS3day')
 # get latest 3-day composite sst
 viirsSST <- rerddap::griddap(sstInfo, 
@@ -54,11 +54,11 @@ viirsSST <- rerddap::griddap(sstInfo,
                              fields = 'sst')
 
 
-## ----viirs_hires,echo = TRUE, eval = FALSE-------------------------------
+## ----viirs_hires,echo = TRUE, eval = FALSE------------------------------------
 #  w <- map("worldHires", xlim = c(-140., -114), ylim = c(30., 42.),
 #           fill = TRUE, plot = FALSE)
 #  # map using that outline,  temperature color from cmocean
-#  add_griddap(plotdap(mapData = w), viirsSST, ~sst, fill = "temperature" )
+#  add_griddap(plotdap(mapData = w), viirsSST, ~sst, fill = "thermal" )
 #  
 
 ## ----world2Hires, fig.align = 'center', fig.height = 3, fig.width = 5,  message = FALSE, warning = FALSE----
@@ -75,7 +75,7 @@ w <- map("world2Hires", regions = w$names[!(w$names %in% remove)],
 plotdap(mapData = w)
 
 
-## ----cairo, eval = FALSE,  echo = TRUE, warning = FALSE, message = FALSE----
+## ----cairo, eval = FALSE,  echo = TRUE, warning = FALSE, message = FALSE------
 #  # write plot to disk using the Cairo package
 #  library(Cairo)
 #  # (latitude limits) / (longitude limits)
@@ -87,16 +87,17 @@ plotdap(mapData = w)
 #  plotdap("base", mapData = us, mapTitle = "Albers projection of Alaska")
 #  dev.off()
 
-## ----get_sardines, warning = FALSE, message = FALSE----------------------
+## ----get_sardines, warning = FALSE, message = FALSE---------------------------
+my_url <- 'https://coastwatch.pfeg.noaa.gov/erddap/'
 sardines <- tabledap(
   'FRDCPSTrawlLHHaulCatch',
   fields = c('latitude',  'longitude', 'time', 'scientific_name', 
              'subsample_count'),
-  'time>=2010-01-01', 'time<=2012-01-01', 'scientific_name="Sardinops sagax"'
-)
+  'time>=2010-01-01', 'time<=2012-01-01', 'scientific_name="Sardinops sagax"',
+   url = my_url)
 head(sardines)
 
-## ---- echo = TRUE, eval = FALSE------------------------------------------
+## ---- echo = TRUE, eval = FALSE-----------------------------------------------
 #  p1 <- add_tabledap(
 #    plotdap(crs = "+proj=robin",  mapTitle = "subsample count"),
 #    sardines,
@@ -112,12 +113,12 @@ head(sardines)
 #  p2
 #  
 
-## ---- echo = TRUE, eval = FALSE------------------------------------------
+## ---- echo = TRUE, eval = FALSE-----------------------------------------------
 #  p1 <- add_tabledap(
 #    plotdap(crs = "+proj=robin", mapTitle = "Sardines - change color"),
 #    sardines,
 #    ~subsample_count,
-#    color = "density",
+#    color = "dense",
 #  )
 #  p2  <- add_tabledap(
 #    plotdap(crs = "+proj=robin", mapTitle = "Sardines - change shape and size"),
@@ -129,7 +130,7 @@ head(sardines)
 #  p1
 #  p2
 
-## ----get_mur-------------------------------------------------------------
+## ----get_mur------------------------------------------------------------------
 murSST_west <- griddap(
   'jplMURSST41', 
   latitude = c(22, 51), 
@@ -138,10 +139,10 @@ murSST_west <- griddap(
   fields = 'analysed_sst'
   )
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 str(murSST_west$data)
 
-## ----plot_mur, echo = TRUE, eval = FALSE---------------------------------
+## ----plot_mur, echo = TRUE, eval = FALSE--------------------------------------
 #  add_griddap(
 #    plotdap(crs = "+proj=robin"),
 #    murSST_west,
@@ -149,7 +150,7 @@ str(murSST_west$data)
 #    maxpixels = 50000
 #  )
 
-## ----get_wind------------------------------------------------------------
+## ----get_wind-----------------------------------------------------------------
 wind <- griddap(
   'erdQMwindmday', 
   time = c('2016-04-16', '2016-06-16'),
@@ -159,12 +160,12 @@ wind <- griddap(
 )
 unique(wind$data$time)
 
-## ---- echo = TRUE, eval = FALSE------------------------------------------
+## ---- echo = TRUE, eval = FALSE-----------------------------------------------
 #  p1 <- add_griddap(
 #    plotdap(mapTitle = "Mean Meridional Wind"),
 #    wind,
 #    ~y_wind,
-#    fill = "velocity",
+#    fill = "delta",
 #    time = mean
 #  )
 #  my_func <- function(x) var(x, na.rm = TRUE)
@@ -172,7 +173,7 @@ unique(wind$data$time)
 #    plotdap(mapTitle = "Variance of Meridional Wind"),
 #    wind,
 #    ~y_wind,
-#    fill = "velocity",
+#    fill = "delta",
 #    time = my_func
 #  )
 #  p1
@@ -184,7 +185,7 @@ p1 <- add_griddap(
   plotdap(mapTitle = "Mean Meridional Wind"), 
   wind, 
   ~y_wind, 
-  fill = "velocity", 
+  fill = "delta", 
   time = mean
 ) 
 my_func <- function(x) var(x, na.rm = TRUE)
@@ -192,69 +193,69 @@ p2 <- add_griddap(
   plotdap(mapTitle = "Variance of Meridional Wind"), 
   wind, 
   ~y_wind, 
-  fill = "velocity", 
+  fill = "delta", 
   time = my_func
 ) 
 p1
 p2
 
 
-## ----viirsSST_gridland, echo = TRUE, eval = FALSE------------------------
+## ----viirsSST_gridland, echo = TRUE, eval = FALSE-----------------------------
 #  plotdap(mapTitle = "Grid over Land") %>%
 #        add_griddap(
 #          viirsSST,
 #          ~sst,
-#          fill = "temperature"
+#          fill = "thermal"
 #          )
 #  
 
-## ----viirsSST_landgrid, echo = TRUE, eval = FALSE------------------------
+## ----viirsSST_landgrid, echo = TRUE, eval = FALSE-----------------------------
 #  plotdap(mapTitle = "Land Over Grid") %>%
 #      add_griddap(
 #        viirsSST,
 #        ~sst,
-#        fill = "temperature"
+#        fill = "thermal"
 #        ) %>%
 #      print(landmask = TRUE)
 
-## ----maxpix_10, echo = TRUE, eval = FALSE--------------------------------
+## ----maxpix_10, echo = TRUE, eval = FALSE-------------------------------------
 #  plotdap(mapTitle = "maxpixels = 10,000") %>%
 #      add_griddap(
 #        viirsSST,
 #        ~sst,
-#        fill = "temperature",
+#        fill = "thermal",
 #        maxpixels = 10000
 #        )
 
-## ----maxpix_50, echo = TRUE, eval = FALSE--------------------------------
+## ----maxpix_50, echo = TRUE, eval = FALSE-------------------------------------
 #  plotdap(mapTitle = "maxpixels = 50,000") %>%
 #       add_griddap(
 #         viirsSST,
 #         ~sst,
-#         fill = "temperature",
+#         fill = "thermal",
 #         maxpixels = 50000
 #         )
 
-## ----maxpix_100, echo = TRUE, eval = FALSE-------------------------------
+## ----maxpix_100, echo = TRUE, eval = FALSE------------------------------------
 #  plotdap(mapTitle = "maxpixels = 100,000") %>%
 #      add_griddap(
 #        viirsSST,
 #        ~sst,
-#        fill = "temperature",
+#        fill = "thermal",
 #        maxpixels = 100000
 #        )
 
-## ----maxpix_100_mask, echo = TRUE, eval = FALSE--------------------------
+## ----maxpix_100_mask, echo = TRUE, eval = FALSE-------------------------------
 #  plotdap(mapTitle = "maxpixels = 100,000, landmask") %>%
 #      add_griddap(
 #        viirsSST,
 #        ~sst,
-#        fill = "temperature",
+#        fill = "thermal",
 #        maxpixels = 100000
 #        ) %>%
 #      print(landmask = TRUE)
 
-## ----hires---------------------------------------------------------------
+## ----hires--------------------------------------------------------------------
 w <- map("worldHires", xlim = c(-130., -114), ylim = c(30., 42.), 
          fill = TRUE, plot = FALSE)
 
@@ -263,12 +264,12 @@ plotdap(mapData = w) %>%
     add_griddap(
       viirsSST, 
       ~sst, 
-      fill = 'temperature',  
+      fill = 'thermal',  
       maxpixels = 50000
       ) %>%
     print(landmask = TRUE)
 
-## ----soda70_get, message = FALSE, warning = FALSE------------------------
+## ----soda70_get, message = FALSE, warning = FALSE-----------------------------
 soda70Info <- rerddap::info('erdSoda331oceanmday')
 xpos <- c(135.25, 240.25)
 ypos <- c(20.25, 60.25)
@@ -295,12 +296,12 @@ plotdap(mapData = w) %>%
         add_griddap(
           soda70, 
           ~temp, 
-          fill = "temperature"
+          fill = "thermal"
           ) %>%
         print(landmask = TRUE) 
 
 
-## ----overlay, fig.align = 'center', fig.height = 4, fig.width = 5--------
+## ----overlay, fig.align = 'center', fig.height = 4, fig.width = 5-------------
 plotdap("base") %>%
   add_griddap(
     murSST_west, 
@@ -311,7 +312,7 @@ plotdap("base") %>%
     ~subsample_count
     )
 
-## ----modify, fig.align = 'center', fig.height = 4, fig.width = 5---------
+## ----modify, fig.align = 'center', fig.height = 4, fig.width = 5--------------
 library(ggplot2)
 plotdap(crs = "+proj=robin") %>%
   add_tabledap(
@@ -328,13 +329,13 @@ plotdap(crs = "+proj=robin") %>%
     theme(axis.ticks = element_blank(), axis.text = element_blank())
   )
 
-## ----modify2, echo = TRUE, eval = FALSE, timeit = TRUE-------------------
+## ----modify2, echo = TRUE, eval = FALSE, timeit = TRUE------------------------
 #  temp_color <- rerddap::colors$temperature
 #  plotdap(mapTitle = "Reset colorscale limits") %>%
 #      add_griddap(
 #        viirsSST,
 #        ~sst,
-#        fill = "temperature"
+#        fill = "thermal"
 #        ) %>%
 #      add_ggplot(
 #         scale_fill_gradientn(colours = temp_color, na.value = NA, limits = c(10, 20)),
@@ -343,34 +344,34 @@ plotdap(crs = "+proj=robin") %>%
 #       ) %>%
 #       print(landmask = TRUE)
 
-## ---- eval = FALSE, echo = TRUE------------------------------------------
+## ---- eval = FALSE, echo = TRUE-----------------------------------------------
 #  add_tabledap(
 #    plotdap(crs = "+proj=robin"),
 #    sardines,
 #    ~subsample_count,
-#    color = "density",
+#    color = "dense",
 #    shape = 4,
 #    animate = TRUE
 #  )
 
-## ---- eval = FALSE, echo = TRUE------------------------------------------
+## ---- eval = FALSE, echo = TRUE-----------------------------------------------
 #  add_griddap(
 #    plotdap(crs = "+proj=robin"),
 #    wind, ~y_wind,
 #    time = identity,
-#    fill = 'velocity',
+#    fill = 'delta',
 #    animate = TRUE
 #  )
 
-## ---- eval = FALSE, echo = TRUE------------------------------------------
+## ---- eval = FALSE, echo = TRUE-----------------------------------------------
 #  p <- add_griddap(
 #    plotdap(crs = "+proj=robin"),
 #    wind, ~y_wind,
 #    time = identity,
-#    fill = 'velocity',
+#    fill = 'delta',
 #    animate = TRUE
 #  )
-#    ylim <- c(30, 50),
+#    ylim <- c(30, 50)
 #    xlim <- c(-150, -120)
 #    p <- bbox_set(p, xlim, ylim)
 
