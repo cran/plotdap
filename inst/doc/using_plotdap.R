@@ -301,16 +301,16 @@ plotdap(mapData = w) %>%
         print(landmask = TRUE) 
 
 
-## ----overlay, fig.align = 'center', fig.height = 4, fig.width = 5-------------
-plotdap("base") %>%
-  add_griddap(
-    murSST_west, 
-    ~analysed_sst
-    ) %>%
-  add_tabledap(
-    sardines, 
-    ~subsample_count
-    )
+## ----overlay, echo = TRUE, eval = FALSE---------------------------------------
+#  p <-   add_griddap(plotdap(),
+#      murSST_west,
+#      ~analysed_sst
+#      )
+#  p1 <-   add_tabledap(p,
+#      sardines,
+#      ~subsample_count
+#      )
+#  print(p1, landmask = TRUE)
 
 ## ----modify, fig.align = 'center', fig.height = 4, fig.width = 5--------------
 library(ggplot2)
