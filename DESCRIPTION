@@ -1,8 +1,8 @@
 Package: plotdap
 Title: Easily Visualize Data from 'ERDDAP' Servers via the 'rerddap'
         Package
-Version: 0.0.6
-Date: 2020-02-17
+Version: 0.0.7
+Date: 2020-03-19
 Authors@R: c(
     person("Carson", "Sievert", role = "aut"),
     person("Roy", "Mendelssohn", role = c("aut", "ctb", "cre"), email = "roy.mendelssohn@noaa.gov"))
@@ -15,14 +15,14 @@ Imports: cmocean, dplyr, gganimate, ggnewscale (>= 0.4.1), ggplot2 (>=
         3.1.0), lazyeval, lubridate, magrittr, maps, raster, rerddap
         (>= 0.6.0), rgeos, scales, sf, tidyr, viridis
 Suggests: Cairo, knitr, mapdata, maptools, rgdal, rmarkdown, testthat
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-02-17 16:11:18 UTC; rmendels
+Packaged: 2020-03-19 17:38:13 UTC; rmendels
 Author: Carson Sievert [aut],
   Roy Mendelssohn [aut, ctb, cre]
 Maintainer: Roy Mendelssohn <roy.mendelssohn@noaa.gov>
 Repository: CRAN
-Date/Publication: 2020-02-17 19:00:21 UTC
+Date/Publication: 2020-03-20 11:20:06 UTC
