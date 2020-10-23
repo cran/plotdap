@@ -183,7 +183,7 @@ add_griddap <- function(plot, grid, var, fill = "viridis",
     if (animate) {
       try_gganimate()
       plot$animate <- TRUE
-      plot$nper <- length(sg)
+      plot$nper <- length(s) - 1
       plot$ggplot <- plot$ggplot +
         gganimate::transition_manual(variable, cumulative = cumulative) +
         ggplot2::labs(title = "{current_frame}")
