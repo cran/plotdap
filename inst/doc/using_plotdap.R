@@ -44,15 +44,15 @@ w <- st_as_sf(maps::map("world", plot = FALSE, fill = TRUE))
 us <- st_transform(subset(w, ID == "USA"), alaska)
 plotdap(mapData = us)
 
-## ----get_viirsSST-------------------------------------------------------------
-sstInfo <- rerddap::info('erdVHsstaWS3day')
-# get latest 3-day composite sst
-viirsSST <- rerddap::griddap(sstInfo, 
-                             latitude = c(41., 31.), 
-                             longitude = c(-128., -115), 
-                             time = c('last','last'), 
-                             fields = 'sst')
-
+## ----get_viirsSST, eval = FALSE-----------------------------------------------
+#  sstInfo <- rerddap::info('erdVHsstaWS3day')
+#  # get latest 3-day composite sst
+#  viirsSST <- rerddap::griddap(sstInfo,
+#                               latitude = c(41., 31.),
+#                               longitude = c(-128., -115),
+#                               time = c('last','last'),
+#                               fields = 'sst')
+#  
 
 ## ----viirs_hires,echo = TRUE, eval = FALSE------------------------------------
 #  w <- map("worldHires", xlim = c(-140., -114), ylim = c(30., 42.),
@@ -87,15 +87,14 @@ plotdap(mapData = w)
 #  plotdap("base", mapData = us, mapTitle = "Albers projection of Alaska")
 #  dev.off()
 
-## ----get_sardines, warning = FALSE, message = FALSE---------------------------
-my_url <- 'https://coastwatch.pfeg.noaa.gov/erddap/'
-sardines <- tabledap(
-  'FRDCPSTrawlLHHaulCatch',
-  fields = c('latitude',  'longitude', 'time', 'scientific_name', 
-             'subsample_count'),
-  'time>=2010-01-01', 'time<=2012-01-01', 'scientific_name="Sardinops sagax"',
-   url = my_url)
-head(sardines)
+## ----get_sardines, echo = TRUE, eval = FALSE----------------------------------
+#  my_url <- 'https://coastwatch.pfeg.noaa.gov/erddap/'
+#  sardines <- tabledap(
+#    'FRDCPSTrawlLHHaulCatch',
+#    fields = c('latitude',  'longitude', 'time', 'scientific_name',
+#               'subsample_count'),
+#    'time>=2010-01-01', 'time<=2012-01-01', 'scientific_name="Sardinops sagax"',
+#     url = my_url)
 
 ## ---- echo = TRUE, eval = FALSE-----------------------------------------------
 #  p1 <- add_tabledap(
@@ -130,17 +129,14 @@ head(sardines)
 #  p1
 #  p2
 
-## ----get_mur------------------------------------------------------------------
-murSST_west <- griddap(
-  'jplMURSST41', 
-  latitude = c(22, 51), 
-  longitude = c(-140, -105),
-  time = c('last', 'last'), 
-  fields = 'analysed_sst'
-  )
-
-## -----------------------------------------------------------------------------
-str(murSST_west$data)
+## ----get_mur, eval = FALSE----------------------------------------------------
+#  murSST_west <- griddap(
+#    'jplMURSST41',
+#    latitude = c(22, 51),
+#    longitude = c(-140, -105),
+#    time = c('last', 'last'),
+#    fields = 'analysed_sst'
+#    )
 
 ## ----plot_mur, echo = TRUE, eval = FALSE--------------------------------------
 #  add_griddap(
@@ -150,15 +146,14 @@ str(murSST_west$data)
 #    maxpixels = 50000
 #  )
 
-## ----get_wind-----------------------------------------------------------------
-wind <- griddap(
-  'erdQMwindmday', 
-  time = c('2016-04-16', '2016-06-16'),
-  latitude = c(30, 50), 
-  longitude = c(210, 240),
-  fields = 'y_wind'
-)
-unique(wind$data$time)
+## ----get_wind, eval = FALSE---------------------------------------------------
+#  wind <- griddap(
+#    'erdQMwindmday',
+#    time = c('2016-04-16', '2016-06-16'),
+#    latitude = c(30, 50),
+#    longitude = c(210, 240),
+#    fields = 'y_wind'
+#  )
 
 ## ---- echo = TRUE, eval = FALSE-----------------------------------------------
 #  p1 <- add_griddap(
@@ -179,26 +174,6 @@ unique(wind$data$time)
 #  p1
 #  p2
 #  
-
-## ----plot_wind, echo = FALSE, fig.hold = TRUE, out.width='.49\\linewidth', fig.width=3.25, fig.height=4 , message = FALSE, warning = FALSE----
-p1 <- add_griddap(
-  plotdap(mapTitle = "Mean Meridional Wind"), 
-  wind, 
-  ~y_wind, 
-  fill = "delta", 
-  time = mean
-) 
-my_func <- function(x) var(x, na.rm = TRUE)
-p2 <- add_griddap(
-  plotdap(mapTitle = "Variance of Meridional Wind"), 
-  wind, 
-  ~y_wind, 
-  fill = "delta", 
-  time = my_func
-) 
-p1
-p2
-
 
 ## ----viirsSST_gridland, echo = TRUE, eval = FALSE-----------------------------
 #  plotdap(mapTitle = "Grid over Land") %>%
@@ -259,47 +234,47 @@ p2
 w <- map("worldHires", xlim = c(-130., -114), ylim = c(30., 42.), 
          fill = TRUE, plot = FALSE)
 
-## ----viirs_hires_mask, fig.align = 'center', fig.height = 4, fig.width = 5,  message = FALSE, warning = FALSE----
-plotdap(mapData = w) %>%
-    add_griddap(
-      viirsSST, 
-      ~sst, 
-      fill = 'thermal',  
-      maxpixels = 50000
-      ) %>%
-    print(landmask = TRUE)
+## ----viirs_hires_mask, echo = TRUE, eval = FALSE------------------------------
+#  plotdap(mapData = w) %>%
+#      add_griddap(
+#        viirsSST,
+#        ~sst,
+#        fill = 'thermal',
+#        maxpixels = 50000
+#        ) %>%
+#      print(landmask = TRUE)
 
-## ----soda70_get, message = FALSE, warning = FALSE-----------------------------
-soda70Info <- rerddap::info('erdSoda331oceanmday')
-xpos <- c(135.25, 240.25)
-ypos <- c(20.25, 60.25)
-zpos <- c(70.02, 70.02)
-tpos <- c('2010-12-15', '2010-12-15')
-soda70 <- rerddap::griddap(soda70Info,  
-                  longitude = xpos, 
-                  latitude = ypos, 
-                  time = tpos, 
-                  depth = zpos, 
-                  fields = 'temp' )
+## ----soda70_get, echo = TRUE, eval = FALSE------------------------------------
+#  soda70Info <- rerddap::info('erdSoda331oceanmday')
+#  xpos <- c(135.25, 240.25)
+#  ypos <- c(20.25, 60.25)
+#  zpos <- c(70.02, 70.02)
+#  tpos <- c('2010-12-15', '2010-12-15')
+#  soda70 <- rerddap::griddap(soda70Info,
+#                    longitude = xpos,
+#                    latitude = ypos,
+#                    time = tpos,
+#                    depth = zpos,
+#                    fields = 'temp' )
+#  
 
-
-## ----soda70, fig.align = 'center', fig.height = 3, fig.width = 5,  message = FALSE, warning = FALSE----
-remove <- c("UK:Great Britain", "France", "Spain", "Algeria", "Mali", 
-            "Burkina Faso", "Ghana", "Togo")
-#subset world2Hires with those countries removed
-w <- map("mapdata::world2Hires", plot = FALSE, fill = TRUE, 
-         ylim = ypos, xlim = xpos)
-w <- map("mapdata::world2Hires", regions = w$names[!(w$names %in% remove)], 
-         plot = FALSE, fill = TRUE, ylim = ypos, xlim = xpos)
-# plot result
-plotdap(mapData = w) %>%
-        add_griddap(
-          soda70, 
-          ~temp, 
-          fill = "thermal"
-          ) %>%
-        print(landmask = TRUE) 
-
+## ----soda70, echo= TRUE, eval = FALSE-----------------------------------------
+#  remove <- c("UK:Great Britain", "France", "Spain", "Algeria", "Mali",
+#              "Burkina Faso", "Ghana", "Togo")
+#  #subset world2Hires with those countries removed
+#  w <- map("mapdata::world2Hires", plot = FALSE, fill = TRUE,
+#           ylim = ypos, xlim = xpos)
+#  w <- map("mapdata::world2Hires", regions = w$names[!(w$names %in% remove)],
+#           plot = FALSE, fill = TRUE, ylim = ypos, xlim = xpos)
+#  # plot result
+#  plotdap(mapData = w) %>%
+#          add_griddap(
+#            soda70,
+#            ~temp,
+#            fill = "thermal"
+#            ) %>%
+#          print(landmask = TRUE)
+#  
 
 ## ----overlay, echo = TRUE, eval = FALSE---------------------------------------
 #  p <-   add_griddap(plotdap(),

@@ -1,7 +1,7 @@
-fdb1e34183fbb61d21334b6b609e0009 *DESCRIPTION
+e43fa50ded27bb81e9e0c1a471d7c27b *DESCRIPTION
 92f2cf7eba999c7fb9c58c188f8af346 *LICENSE
 69945886646941d634d21d8e419be1bc *NAMESPACE
-37e519847257a35afb07e6be28b9e483 *NEWS.md
+32d7c549fbc952249ef0925dd06c2768 *NEWS.md
 9732f09ef1c508b3afdf47155ce254a2 *R/QMwind.R
 70296c13bd365cb03be3e391581a5d52 *R/add_ggplot.R
 6dc0246d77bf97711b10500ac7807d20 *R/add_griddap.R
@@ -17,9 +17,9 @@ d9dd83c058b42b6c846fc3e3d479d30c *README.md
 205997c099dca025b602746ea96d40d2 *data/QMwind.RData
 60ef34ce75c2849ccc67e8287c882b73 *data/murSST.RData
 3df2d2fdbd435897cf15be8b79c03270 *data/sardines.RData
-d614af50e43d1412c91b80dc2f9c5f77 *inst/doc/using_plotdap.R
-1fe3e3c6a7fd9603c6b35ca75af6d28b *inst/doc/using_plotdap.Rmd
-436a8cef4e94ac3ede147985e23ccb15 *inst/doc/using_plotdap.html
+dc9d0723087d688fa49811ebf975b5f4 *inst/doc/using_plotdap.R
+5ce14eba123f8478e72a8502c1947511 *inst/doc/using_plotdap.Rmd
+5e86d9f9c6b2a553738fb225f9220cdd *inst/doc/using_plotdap.html
 926c98903b891b2d90c2e085d0a197b9 *man/QMwind.Rd
 47a966f4f871a3215e4edb68c1a6e2bc *man/add_ggplot.Rd
 0ba29390f0eddf46ba2d979222925cea *man/add_griddap.Rd
@@ -37,7 +37,8 @@ c0fa85686efbd964fe7d7fe270a786b1 *vignettes/murSST_west.png
 11f0292e3ea2feaeb0ff1df871482752 *vignettes/sardines.gif
 702fa0cb66beec6f1a31f1cf6f8183f8 *vignettes/sardines.png
 0b85b107051cefd6628263445197320d *vignettes/sardines2.png
-1fe3e3c6a7fd9603c6b35ca75af6d28b *vignettes/using_plotdap.Rmd
+ce2118d4e9fa59bc0bdfa63abc998897 *vignettes/soda70.png
+5ce14eba123f8478e72a8502c1947511 *vignettes/using_plotdap.Rmd
 14e91ad63e6eefe34392cd4bd1f7d8e8 *vignettes/viirsSST_10000.png
 41c8d317e797e46e8771b88780acbe54 *vignettes/viirsSST_100000.png
 6ba5fcff34d90668b1c2bdf6bc47d921 *vignettes/viirsSST_100000_mask.png
@@ -45,4 +46,5 @@ a22ff4b5eb5a1f45181b84ab59254a4b *vignettes/viirsSST_50000.png
 9dbe96dd3bc25e93f8e26f2ee854b8b9 *vignettes/viirsSST_gridland.png
 e37b9e0ca9be05d7f08db0274d0b5c59 *vignettes/viirsSST_landgrid.png
 138a1e0d079570f72c7009968790aa3e *vignettes/viirs_hires.png
+3454aedc771ed452d3d7b8dcbc75c23e *vignettes/winds.png
 61d5b6ba5cc39c406a861735949ccd40 *vignettes/y_wind.gif

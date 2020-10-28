@@ -1,8 +1,8 @@
 Package: plotdap
 Title: Easily Visualize Data from 'ERDDAP' Servers via the 'rerddap'
         Package
-Version: 0.0.8
-Date: 2020-10-23
+Version: 0.0.9
+Date: 2020-10-28
 Authors@R: c(
     person("Carson", "Sievert", role = "aut"),
     person("Roy", "Mendelssohn", role = c("aut", "ctb", "cre"), email = "roy.mendelssohn@noaa.gov"))
@@ -20,9 +20,9 @@ LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-10-23 16:56:51 UTC; rmendels
+Packaged: 2020-10-28 19:10:50 UTC; rmendels
 Author: Carson Sievert [aut],
   Roy Mendelssohn [aut, ctb, cre]
 Maintainer: Roy Mendelssohn <roy.mendelssohn@noaa.gov>
 Repository: CRAN
-Date/Publication: 2020-10-23 17:30:02 UTC
+Date/Publication: 2020-10-28 21:20:02 UTC
