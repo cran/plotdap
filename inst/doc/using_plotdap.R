@@ -279,7 +279,8 @@ w <- map("worldHires", xlim = c(-130., -114), ylim = c(30., 42.),
 ## ----overlay, echo = TRUE, eval = FALSE---------------------------------------
 #  p <-   add_griddap(plotdap(),
 #      murSST_west,
-#      ~analysed_sst
+#      ~analysed_sst,
+#      fill = "thermal"
 #      )
 #  p1 <-   add_tabledap(p,
 #      sardines,

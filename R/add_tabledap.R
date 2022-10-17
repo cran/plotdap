@@ -114,6 +114,7 @@ add_tabledap <- function(plot, table, var, color = c("#132B43", "#56B1F7"),
         add_ggplot(
           plot,
           ggnewscale::new_scale_colour(),
+          #structure(ggplot2::standardise_aes_names("colour"), class = "new_aes"),
           geom_sf(data = table, mapping = aes_(colour = var),
                   size = size, pch = shape, ...),
           scale_colour_gradientn(name = lazyeval::f_text(var), colours = cols))
