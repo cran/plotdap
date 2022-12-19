@@ -1,7 +1,7 @@
-37b545bbbc1fb564b3d63ea2f9b000fa *DESCRIPTION
+db521733b2d351071b8679fa11c532d0 *DESCRIPTION
 92f2cf7eba999c7fb9c58c188f8af346 *LICENSE
 69945886646941d634d21d8e419be1bc *NAMESPACE
-0aa0046d69ecf0cd0727eb0cbcf7eb5c *NEWS.md
+e2f0accbf76a2ea2dc35bceabc278042 *NEWS.md
 9732f09ef1c508b3afdf47155ce254a2 *R/QMwind.R
 70296c13bd365cb03be3e391581a5d52 *R/add_ggplot.R
 6dc0246d77bf97711b10500ac7807d20 *R/add_griddap.R
@@ -13,13 +13,13 @@ b5fc21de47d6628a978416c33c77bbbe *R/plotdap.R
 d515779a8275216d1d7492ffdf1f8345 *R/sardines.R
 88444a58ea8551703709374c0ef36f6e *R/utils.R
 d9dd83c058b42b6c846fc3e3d479d30c *README.md
-ca4d1094e7f540e47b0332a676705176 *build/vignette.rds
+e39f9588a449b8060f2caa98b383d5a3 *build/vignette.rds
 205997c099dca025b602746ea96d40d2 *data/QMwind.RData
 60ef34ce75c2849ccc67e8287c882b73 *data/murSST.RData
 3df2d2fdbd435897cf15be8b79c03270 *data/sardines.RData
 5e5465a4272de2766c046f24f7844030 *inst/doc/using_plotdap.R
 46c1073f8658d7d295e9a6b4a75e98c1 *inst/doc/using_plotdap.Rmd
-4ee82f3c0454a8916e03a328a18e354b *inst/doc/using_plotdap.html
+5149efcd0445d4951ba5ef4278b4c091 *inst/doc/using_plotdap.html
 926c98903b891b2d90c2e085d0a197b9 *man/QMwind.Rd
 47a966f4f871a3215e4edb68c1a6e2bc *man/add_ggplot.Rd
 0ba29390f0eddf46ba2d979222925cea *man/add_griddap.Rd
