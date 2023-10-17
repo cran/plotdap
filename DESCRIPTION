@@ -1,8 +1,8 @@
 Package: plotdap
 Title: Easily Visualize Data from 'ERDDAP' Servers via the 'rerddap'
         Package
-Version: 1.0.2
-Date: 2023-08-21
+Version: 1.0.3
+Date: 2023-10-17
 Authors@R: c(
     person("Carson", "Sievert", role = "aut"),
     person("Roy", "Mendelssohn", role = c("aut", "ctb", "cre"), email = "roy.mendelssohn@noaa.gov"))
@@ -10,19 +10,19 @@ Description: Easily visualize and animate 'tabledap' and 'griddap' objects obtai
 License: MIT + file LICENSE
 URL: https://github.com/rmendels/plotdap
 BugReports: https://github.com/rmendels/plotdap/issues
-Depends: R (>= 4.0.0)
+Depends: R (>= 4.3.0)
 Imports: cmocean, dplyr, gganimate, ggnewscale, ggplot2 (>= 3.1.0),
-        lazyeval, lubridate, magrittr, maps, raster, rerddap (>=
-        0.8.0), scales, sf, tidyr, viridis
-Suggests: Cairo, knitr, mapdata, maptools, rmarkdown, testthat
+        lazyeval, lubridate, magrittr, mapdata, maps, raster, rerddap
+        (>= 0.8.0), scales, sf, tidyr, viridis
+Suggests: Cairo, knitr, rmarkdown, testthat
 RoxygenNote: 7.2.3
 LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2023-08-21 20:43:28 UTC; rmendels
+Packaged: 2023-10-17 21:21:58 UTC; rmendels
 Author: Carson Sievert [aut],
   Roy Mendelssohn [aut, ctb, cre]
 Maintainer: Roy Mendelssohn <roy.mendelssohn@noaa.gov>
 Repository: CRAN
-Date/Publication: 2023-08-22 03:20:05 UTC
+Date/Publication: 2023-10-17 22:00:15 UTC

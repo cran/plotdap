@@ -4,17 +4,17 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 ### needed libraries
 library(mapdata)
 library(plotdap)
 library(rerddap)
 
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  install.packages("plotdap")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  devtools::install_github('ropensci/plotdap')
 
 ## ----world, fig.align = 'center', fig.height = 4, fig.width = 5---------------
@@ -34,7 +34,7 @@ plotdap("base",
 alaska <- "+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 plotdap("base", crs = alaska)
 
-## ---- echo = FALSE------------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 alaska <- "+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 
 ## ----usmap, fig.align = 'center', fig.height = 4, fig.width = 5---------------
@@ -96,7 +96,7 @@ plotdap(mapData = w)
 #    'time>=2010-01-01', 'time<=2012-01-01', 'scientific_name="Sardinops sagax"',
 #     url = my_url)
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  p1 <- add_tabledap(
 #    plotdap(crs = "+proj=robin",  mapTitle = "subsample count"),
 #    sardines,
@@ -112,7 +112,7 @@ plotdap(mapData = w)
 #  p2
 #  
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  p1 <- add_tabledap(
 #    plotdap(crs = "+proj=robin", mapTitle = "Sardines - change color"),
 #    sardines,
@@ -155,7 +155,7 @@ plotdap(mapData = w)
 #    fields = 'y_wind'
 #  )
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  p1 <- add_griddap(
 #    plotdap(mapTitle = "Mean Meridional Wind"),
 #    wind,
@@ -320,7 +320,7 @@ plotdap(crs = "+proj=robin") %>%
 #       ) %>%
 #       print(landmask = TRUE)
 
-## ---- eval = FALSE, echo = TRUE-----------------------------------------------
+## ----eval = FALSE, echo = TRUE------------------------------------------------
 #  add_tabledap(
 #    plotdap(crs = "+proj=robin"),
 #    sardines,
@@ -330,7 +330,7 @@ plotdap(crs = "+proj=robin") %>%
 #    animate = TRUE
 #  )
 
-## ---- eval = FALSE, echo = TRUE-----------------------------------------------
+## ----eval = FALSE, echo = TRUE------------------------------------------------
 #  add_griddap(
 #    plotdap(crs = "+proj=robin"),
 #    wind, ~y_wind,
@@ -339,7 +339,7 @@ plotdap(crs = "+proj=robin") %>%
 #    animate = TRUE
 #  )
 
-## ---- eval = FALSE, echo = TRUE-----------------------------------------------
+## ----eval = FALSE, echo = TRUE------------------------------------------------
 #  p <- add_griddap(
 #    plotdap(crs = "+proj=robin"),
 #    wind, ~y_wind,
