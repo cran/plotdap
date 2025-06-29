@@ -71,7 +71,8 @@ plotdap <- function(method = c("ggplot2", "base"),
       crs = sf::st_crs(bgMap),
       datum = datum
     )
-    return(structure(p2, class = c("ggplotdap", class(p))))
+    # return(structure(p2, class = c("ggplotdap", class(p))))
+    return(structure(p2, class = "ggplotdap"))
   }
 
   # construct an custom object for base plotting...

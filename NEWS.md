@@ -1,3 +1,9 @@
+# plotdap 1.1.0
+
+- Revised to work with changes in 'ggplot2' 
+- Removed use of deprecated 'aes_string()' and 'aes_()', using 'rlang' constructs instead
+- Updated the vignette
+
 # plotdap 1.0.3
 
   Removed archived maptools from Suggests

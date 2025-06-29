@@ -17,9 +17,9 @@ add_tabledap(
 )
 }
 \arguments{
-\item{plot}{a \link{plotdap} object.}
+\item{plot}{a \link[plotdap]{plotdap} object.}
 
-\item{table}{a \link{tabledap} object.}
+\item{table}{a \link[rerddap]{tabledap} object.}
 
 \item{var}{a formula defining a variable, or function of variables to visualize.}
 
