@@ -245,6 +245,7 @@ w <- map("worldHires", xlim = c(-130., -114), ylim = c(30., 42.),
 #     print(landmask = TRUE)
 
 ## ----soda70_get, echo = TRUE, eval = FALSE------------------------------------
+# 
 # soda70Info <- rerddap::info('erdSoda331oceanmday')
 # xpos <- c(135.25, 240.25)
 # ypos <- c(20.25, 60.25)
@@ -351,4 +352,31 @@ plotdap(crs = "+proj=robin") %>%
 #   ylim <- c(30, 50)
 #   xlim <- c(-150, -120)
 #   p <- bbox_set(p, xlim, ylim)
+
+## ----echo = TRUE, eval = FALSE------------------------------------------------
+# 
+# bbox_set <- function(plotobj, landmask = TRUE, xlim = NULL, ylim = NULL, interactive = FALSE)
+# 
+
+## ----echo = TRUE, eval = FALSE------------------------------------------------
+# library(plotly)
+# 
+# myURL <- "https://coastwatch.pfeg.noaa.gov/erddap/"
+# 
+# sstInfo <- rerddap::info('erdVHsstaWS3day', url = myURL)
+# # get latest 3-day composite sst
+# viirsSST <- rerddap::griddap(sstInfo,
+#                              latitude = c(41., 31.),
+#                              longitude = c(-128., -115),
+#                              time = c('last','last'),
+#                              fields = 'sst')
+# 
+# w <- map("worldHires", xlim = c(-140., -114), ylim = c(30., 42.), fill = TRUE, plot = FALSE)
+# my_plot <- add_griddap(plotdap(mapData = w), viirsSST, ~sst, fill = "thermal" )
+# 
+# my_plot1 <- bbox_set(my_plot, xlim = c(-128., -115), ylim = c(31, 41.), interactive = TRUE)
+# 
+# # must have '"tooltip = "text"' to work properly.
+# plotly::ggplotly(my_plot1, tooltip = "text")
+# 
 
