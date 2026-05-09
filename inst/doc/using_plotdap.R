@@ -46,11 +46,10 @@ plotdap(mapData = us)
 
 ## ----get_viirsSST, eval = FALSE-----------------------------------------------
 # sstInfo <- rerddap::info('erdVHsstaWS3day', url = 'https://coastwatch.pfeg.noaa.gov/erddap/')
-# # get latest 3-day composite sst
 # viirsSST <- rerddap::griddap(sstInfo,
 #                              latitude = c(41., 31.),
 #                              longitude = c(-128., -115),
-#                              time = c('last','last'),
+#                              time = c('2026-03-18T12:00:00Z','2026-03-18T12:00:00Z'),
 #                              fields = 'sst')
 # 
 
@@ -353,6 +352,45 @@ plotdap(crs = "+proj=robin") %>%
 #   xlim <- c(-150, -120)
 #   p <- bbox_set(p, xlim, ylim)
 
+## ----add_contour, eval = FALSE------------------------------------------------
+# add_griddap_contours <- function(p,
+#                                  data,
+#                                  var,
+#                                  n_breaks  = 10L,
+#                                  breaks    = NULL,
+#                                  lon_col   = "longitude",
+#                                  lat_col   = "latitude",
+#                                  color     = "black",
+#                                  linewidth = 0.3,
+#                                  alpha     = 1,
+#                                  crs       = 4326L)
+
+## ----mur2, eval = FALSE-------------------------------------------------------
+# myURL <- "https://coastwatch.pfeg.noaa.gov/erddap/"
+# info <- rerddap::info("jplMURSST41", url = myURL)
+# murSST  <- griddap(info,
+#                    latitude  = c(30, 50),
+#                    longitude = c(-140, -110),
+#                    time      = c("2020-06-15", "2020-06-15"),
+#                    fields    = "analysed_sst")
+# 
+# p <- plotdap() |>
+#       add_griddap(murSST, ~analysed_sst)
+# 
+
+## ----countour1, eval = FALSE--------------------------------------------------
+# p1 <- p |> add_griddap_contours(murSST$data, "analysed_sst") |> add_ggplot()
+
+## ----contour2, eval = FALSE---------------------------------------------------
+# print(p1, landmask = TRUE)
+# 
+
+## ----contour3, eval = FALSE---------------------------------------------------
+# p |> add_griddap_contours(murSST$data, "analysed_sst",
+#                               breaks = c(10, 12, 14, 16, 18, 20)) |>
+#                                add_ggplot() |>
+#                                print(landmask = TRUE)
+
 ## ----echo = TRUE, eval = FALSE------------------------------------------------
 # 
 # bbox_set <- function(plotobj, landmask = TRUE, xlim = NULL, ylim = NULL, interactive = FALSE)
@@ -368,7 +406,7 @@ plotdap(crs = "+proj=robin") %>%
 # viirsSST <- rerddap::griddap(sstInfo,
 #                              latitude = c(41., 31.),
 #                              longitude = c(-128., -115),
-#                              time = c('last','last'),
+#                              time = c('2026-03-18T12:00:00Z','2026-03-18T12:00:00Z'),
 #                              fields = 'sst')
 # 
 # w <- map("worldHires", xlim = c(-140., -114), ylim = c(30., 42.), fill = TRUE, plot = FALSE)
